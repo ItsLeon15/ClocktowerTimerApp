@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clocktower Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="title-wrapper">
+        <h1 class="title">Clocktower Timer App</h1>
+    </div>
+
+    <p class="description">Sends a timestamp to a discord webhook on command with a reminder when it ends</p>
+    <p class="description">Reworked by Leon!</p>
+
+    <button type="button" class="settings-button" id="settings-button">
+        <i class="fa-solid fa-chevron-right icon-right"></i>
+        <i class="fa-solid fa-chevron-down icon-down"></i>
+        <span>Settings</span>
+    </button>
+
+    <div class="settings" id="settings">
+        <div class="settings-input">
+            <label for="beginningMessage">Beginning Message</label>
+            <input class="custom-input" type="text" id="beginningMessage" value="">
+            <button type="button" class="save-button" id="saveBeginningMessage">Save</button>
+        </div>
+
+        <div class="settings-input">
+            <label for="callbackMessage">Callback Message</label>
+            <input class="custom-input" type="text" id="callbackMessage" value="">
+            <button type="button" class="save-button" id="saveCallbackMessage">Save</button>
+        </div>
+    </div>
+
+    <div class="title-wrapper">
+        <h1 class="title">Triggers</h1>
+    </div>
+
+    <div class="buttons">
+        <button type="button" class="trigger-button" id="trigger-30" onclick="triggerButtonClick(30)">30 seconds</button>
+        <button type="button" class="trigger-button" id="trigger-60" onclick="triggerButtonClick(60)">1 Minute</button>
+        <button type="button" class="trigger-button" id="trigger-120" onclick="triggerButtonClick(120)">2 Minutes</button>
+        <button type="button" class="trigger-button" id="trigger-180" onclick="triggerButtonClick(180)">3 Minutes</button>
+        <button type="button" class="trigger-button" id="trigger-240" onclick="triggerButtonClick(240)">4 Minutes</button>
+        <button type="button" class="trigger-button" id="trigger-300" onclick="triggerButtonClick(300)">5 Minutes</button>
+        <button type="button" class="trigger-button" id="trigger-600" onclick="triggerButtonClick(600)">10 Minutes</button>
+    </div>
+</div>
+</body>
+
+<script src="main.js"></script>
+</html>
