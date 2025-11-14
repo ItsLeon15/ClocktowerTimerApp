@@ -1,7 +1,7 @@
 'use strict';
 
-const discordWebhookURL = "https://discord.com/api/webhooks/1438874570886221915/foowaJD7ZbyYcTCVYbMrfpUn5ywAnGXqjb3Kv7qDa_TPiMK0hoOjT-Tjt96QIRLvFhmQ";
-const roleToMention = "1438875926632075406";
+let discordWebhookURL = "";
+let roleToMention = "";
 
 let beginningMessage = "Nominations beginning";
 let callbackMessage = "Nominations are now open! Head back to Town Center";
@@ -15,10 +15,27 @@ const getAllSelectors = selector => {
 };
 
 const saveMessage = type => {
-	if (type === "beginningMessage" && element("beginningMessage")) {
-		beginningMessage = element("beginningMessage").value.trim();
-	} else if (type === "callbackMessage" && element("callbackMessage")) {
-		callbackMessage = element("callbackMessage").value.trim();
+	switch (type) {
+		case "beginningMessage":
+			if (element("beginningMessage")) {
+				beginningMessage = element("beginningMessage").value.trim();
+			}
+			break;
+		case "callbackMessage":
+			if (element("callbackMessage")) {
+				callbackMessage = element("callbackMessage").value.trim();
+			}
+			break;
+		case "discordWebhookURL":
+			if (element("discordWebhookURL")) {
+				discordWebhookURL = element("discordWebhookURL").value.trim();
+			}
+			break;
+		case "roleToMention":
+			if (element("roleToMention")) {
+				roleToMention = element("roleToMention").value.trim();
+			}
+			break;
 	}
 };
 
@@ -55,6 +72,11 @@ const triggerWebhook = async delayInSeconds => {
 		return;
 	}
 
+	if (!roleToMention) {
+		alert("Please set the role to mention.");
+		return;
+	}
+
 	const adjustedTimestamp = Math.floor(Date.now() / 1000) + delayInSeconds;
 	const newBeginningMessage = `${beginningMessage} <t:${adjustedTimestamp}:R>`;
 	const newCallbackMessage = `<@&${roleToMention}> ${callbackMessage}`;
@@ -88,24 +110,28 @@ const triggerButtonClick = (delay) => {
 const setup = () => {
 	const saveBeginningMessage = element("saveBeginningMessage");
 	const saveCallbackMessage = element("saveCallbackMessage");
+	const saveDiscordWebhookURL = element("saveDiscordWebhookURL");
+	const saveRoleToMention = element("saveRoleToMention");
 
-	if (saveBeginningMessage) {
-		saveBeginningMessage.addEventListener("click", () => {
-			saveMessage("beginningMessage")
+	const bindSave = (button, type, showSaved) => {
+		if (!button) {
+			return;
+		}
 
-			saveBeginningMessage.textContent = "Saved!";
-			setTimeout(() => saveBeginningMessage.textContent = "Save", 2000);
+		button.addEventListener("click", () => {
+			saveMessage(type);
+
+			if (showSaved) {
+				button.textContent = "Saved!";
+				setTimeout(() => button.textContent = "Save", 2000);
+			}
 		});
-	}
+	};
 
-	if (saveCallbackMessage) {
-		saveCallbackMessage.addEventListener("click", () => {
-			saveMessage("callbackMessage")
-
-			saveCallbackMessage.textContent = "Saved!";
-			setTimeout(() => saveCallbackMessage.textContent = "Save", 2000);
-		});
-	}
+	bindSave(saveBeginningMessage, "beginningMessage", true);
+	bindSave(saveCallbackMessage, "callbackMessage", true);
+	bindSave(saveDiscordWebhookURL, "discordWebhookURL", true);
+	bindSave(saveRoleToMention, "roleToMention", true);
 
 	const settingsButtonToggle = element("settings-button");
 	if (settingsButtonToggle) {
@@ -135,6 +161,14 @@ const setup = () => {
 
 	if (element("callbackMessage")) {
 		element("callbackMessage").value = callbackMessage;
+	}
+
+	if (element("discordWebhookURL")) {
+		element("discordWebhookURL").value = discordWebhookURL;
+	}
+
+	if (element("roleToMention")) {
+		element("roleToMention").value = roleToMention;
 	}
 
 	const keyMap = {
