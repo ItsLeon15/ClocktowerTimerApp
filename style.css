@@ -24,7 +24,7 @@ a {
     justify-self: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 .save-button {
@@ -64,8 +64,7 @@ a {
     cursor: pointer;
     width: 100%;
     border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .buttons {
@@ -74,11 +73,12 @@ a {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .title {
-    margin-bottom: 20px;
-    font-size: 28px;
+    margin-bottom: 15px;
+    font-size: 24px;
     text-align: center;
     color: #ffffff;
     font-family: Arial, sans-serif;
@@ -96,7 +96,7 @@ a {
     display: block;
     height: 2px;
     background-color: #ffffff;
-    margin: 3px auto 0;
+    margin: 2px auto 0;
     width: 100%;
 }
 
@@ -182,4 +182,21 @@ label {
 
 .settings-button.open .icon-down {
     display: inline-block !important;
+}
+
+.keybinds {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 9px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.keybinds p {
+    background-color: #333333;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0;
+    border-radius: 0.5rem;
 }
