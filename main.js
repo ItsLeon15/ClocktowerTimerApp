@@ -63,12 +63,17 @@ const sendWebhook = async content => {
 
 const triggerWebhook = async delayInSeconds => {
 	if (!discordWebhookURL) {
-		alert("Please set the Discord Webhook URL in the code.");
+		alert("Please set the Discord Webhook URL in the Settings dropdown.");
 		return;
 	}
 
-	if (!beginningMessage || !callbackMessage) {
-		alert("Please set both the beginning and callback messages.");
+	if (!beginningMessage) {
+		alert("Please set the beginning message in the Settings dropdown.");
+		return;
+	}
+
+	if (!callbackMessage) {
+		alert("Please set the callback message in the Settings dropdown.");
 		return;
 	}
 
